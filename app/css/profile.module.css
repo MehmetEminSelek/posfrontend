@@ -1,0 +1,13 @@
+.profile {
+    padding: 1%;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightgrey;
+}
+
+.button {
+    margin-left: 50%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

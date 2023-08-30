@@ -1,0 +1,13 @@
+.main {
+    flex-direction: row;
+    background-color: lightgrey;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main> :not(:last-child) {
+    margin-right: 220px;
+
+}
