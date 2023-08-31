@@ -5,7 +5,9 @@ import Profile from './components/profile'
 import Topbanner from './components/topbanner'
 import Midbanner from './components/midbanner'
 import VideoBanner from './components/videobanner'
+import Bottombanner from './components/bottombanner'
 import { Divider } from '@mui/joy'
+import stock from './images/stock.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,12 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Profile />
-        <Divider />
         <Topbanner />
-        <Divider />
         <Midbanner />
-        <Divider />
         <VideoBanner />
+        <Bottombanner />
         {children}
         </body>
     </html>
