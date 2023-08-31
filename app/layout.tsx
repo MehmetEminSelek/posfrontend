@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Profile from './components/profile'
 import Topbanner from './components/topbanner'
 import Midbanner from './components/midbanner'
+import VideoBanner from './components/videobanner'
+import { Divider } from '@mui/joy'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,8 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Profile />
+        <Divider />
         <Topbanner />
+        <Divider />
         <Midbanner />
+        <Divider />
+        <VideoBanner />
         {children}
         </body>
     </html>
