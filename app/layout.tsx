@@ -1,13 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
 import Profile from './components/profile'
 import Topbanner from './components/topbanner'
 import Midbanner from './components/midbanner'
 import VideoBanner from './components/videobanner'
 import Bottombanner from './components/bottombanner'
-import { Divider } from '@mui/joy'
-import stock from './images/stock.png'
+import Comments from './components/comments'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +29,7 @@ export default function RootLayout({
         <Midbanner />
         <VideoBanner />
         <Bottombanner />
+        <Comments/>
         {children}
         </body>
     </html>
