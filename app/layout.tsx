@@ -8,6 +8,7 @@ import Midbanner from './components/midbanner'
 import VideoBanner from './components/videobanner'
 import Bottombanner from './components/bottombanner'
 import Comments from './components/comments'
+import Footer from './components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <VideoBanner />
         <Bottombanner />
         <Comments/>
+        <Footer />
         {children}
         </body>
     </html>
