@@ -1,0 +1,24 @@
+.main {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  padding-bottom: 15px;
+}
+
+.main h3 {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main p {
+  font-size: 10px;
+  color: black;
+  margin: 10px;
+}
