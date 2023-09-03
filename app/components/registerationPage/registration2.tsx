@@ -16,6 +16,8 @@ import styles from "./registration.module.css";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 
+import { useState } from "react";
+
 const theme = createTheme();
 
 const currencies = [
@@ -49,6 +51,8 @@ export default function registration() {
       password: data.get("password"),
     });
   };
+
+  const [registrationPage, setRegistrationPage] = useState(0);
 
   return (
     <main className={styles.main}>
@@ -179,6 +183,7 @@ export default function registration() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={() => setRegistrationPage(1)}
           >
             Devam Et
           </Button>

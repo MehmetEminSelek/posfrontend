@@ -14,7 +14,7 @@ import styles from "./registration.module.css";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
 
-import { useRegistration } from "../RegistrationContext";
+import { useState } from "react";
 
 const theme = createTheme();
 
@@ -40,23 +40,15 @@ const currencies = [
 export default function registration() {
   const router = useRouter();
 
-  const { setCurrentStep } = useRegistration();
+  const [registrationPage, setRegistrationPage] = useState(2);
+
+  const handleButtonClick = () => {
+    setRegistrationPage(2);
+  };
 
   const [showPassword, setShowPassword] = React.useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
-  const nextStep = () => {
-    setCurrentStep(1);
-  };
 
   return (
     <main className={styles.main}>
@@ -69,7 +61,7 @@ export default function registration() {
           scrambled it to make a type specimen book.
         </p>
         <h3>Üyelik bilgilerimizi girelim ..</h3>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <TextField
@@ -167,7 +159,7 @@ export default function registration() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={nextStep}
+            onClick={() => setRegistrationPage(1)}
           >
             Devam Et
           </Button>

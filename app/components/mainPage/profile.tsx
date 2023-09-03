@@ -5,11 +5,17 @@ import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/joy/Button";
 
-export default function Profile({
-  onButtonClick,
-}: {
-  onButtonClick: () => void;
-}) {
+import { useState } from "react";
+
+interface ProfileProps {
+  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function Profile({ setRegistrationPage }: ProfileProps) {
+  const handleButtonClick = () => {
+    setRegistrationPage(1);
+  };
+
   return (
     <main className={styles.profile}>
       <div className={styles.button}>
@@ -33,7 +39,7 @@ export default function Profile({
             color="neutral"
             size="sm"
             variant="solid"
-            onClick={onButtonClick}
+            onClick={handleButtonClick}
           >
             Abone Olun
           </Button>
