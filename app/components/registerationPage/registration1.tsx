@@ -36,17 +36,60 @@ const currencies = [
     label: "¥",
   },
 ];
+interface RegistrationProps {
+  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
+}
 
-export default function registration() {
+export default function registration1({
+  setRegistrationPage,
+}: RegistrationProps) {
   const router = useRouter();
 
-  const [registrationPage, setRegistrationPage] = useState(2);
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleButtonClick = () => {
+  const [reg1Data, setReg1Data] = useState({
+    username: "",
+    password: "",
+    email: "",
+    shopname: "",
+    shopurl: "",
+    membershipType: "",
+  });
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const data = new FormData(event.currentTarget);
+
+    setReg1Data({
+      username: event.currentTarget.username.value,
+      password: event.currentTarget.password.value,
+      email: event.currentTarget.email.value,
+      shopname: event.currentTarget.shopname.value,
+      shopurl: event.currentTarget.shopUrl.value,
+      membershipType: "free",
+    });
+    debugger;
+
+    fetch("http://localhost:8000/api/v1/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reg1Data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          console.log("success");
+        } else {
+          console.log(reg1Data);
+        }
+      });
+
     setRegistrationPage(2);
   };
-
-  const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -61,7 +104,7 @@ export default function registration() {
           scrambled it to make a type specimen book.
         </p>
         <h3>Üyelik bilgilerimizi girelim ..</h3>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <TextField
@@ -69,6 +112,13 @@ export default function registration() {
                 fullWidth
                 id="username"
                 label="Kullanıc Adı"
+                value={reg1Data.username}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg1Data({
+                    ...reg1Data,
+                    username: event.currentTarget.value,
+                  });
+                }}
                 name="username"
                 autoComplete="username"
                 size="small"
@@ -80,6 +130,13 @@ export default function registration() {
                 fullWidth
                 id="password"
                 label="Şifrenizi Giriniz"
+                value={reg1Data.password}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg1Data({
+                    ...reg1Data,
+                    password: event.currentTarget.value,
+                  });
+                }}
                 name="password"
                 type={showPassword ? "text" : "password"}
                 size="small"
@@ -102,6 +159,13 @@ export default function registration() {
                 fullWidth
                 id="email"
                 label="E-posta Adresiniz"
+                value={reg1Data.email}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg1Data({
+                    ...reg1Data,
+                    email: event.currentTarget.value,
+                  });
+                }}
                 name="email"
                 autoComplete="email"
                 size="small"
@@ -124,6 +188,13 @@ export default function registration() {
                 fullWidth
                 id="shopname"
                 label="Mağaza Adı"
+                value={reg1Data.shopname}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg1Data({
+                    ...reg1Data,
+                    shopname: event.currentTarget.value,
+                  });
+                }}
                 name="shopname"
                 size="small"
               />
@@ -132,34 +203,34 @@ export default function registration() {
               <TextField
                 required
                 fullWidth
-                id="shopname"
-                label="Mağaza Adı Tekrar"
-                name="shopname"
+                id="shopUrl"
+                label="Mağaza Url"
+                name="shopUrl"
                 size="small"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="outlined-select-currency"
-                select
-                fullWidth
-                label="Üyelik Türü"
-                defaultValue="EUR"
-              >
-                {currencies.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="membershipType"
+              name="membershipType"
+              select
+              fullWidth
+              label="Üyelik Türü"
+              defaultValue="EUR"
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => setRegistrationPage(1)}
           >
             Devam Et
           </Button>

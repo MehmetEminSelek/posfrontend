@@ -16,6 +16,8 @@ import styles from "./registration.module.css";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 
+import { ReactElement } from "react";
+
 import { useState } from "react";
 
 const theme = createTheme();
@@ -39,8 +41,15 @@ const currencies = [
   },
 ];
 
-export default function registration() {
+interface RegistrationProps {
+  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function registration2({
+  setRegistrationPage,
+}: RegistrationProps) {
   const [showPassword, setShowPassword] = React.useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -51,8 +60,6 @@ export default function registration() {
       password: data.get("password"),
     });
   };
-
-  const [registrationPage, setRegistrationPage] = useState(0);
 
   return (
     <main className={styles.main}>
@@ -183,7 +190,7 @@ export default function registration() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => setRegistrationPage(1)}
+            onClick={() => setRegistrationPage(3)}
           >
             Devam Et
           </Button>
