@@ -16,25 +16,23 @@ import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
+import axios from "axios";
+
 const theme = createTheme();
 
 const currencies = [
   {
-    value: "USD",
-    label: "$",
+    value: "demo",
+    label: "Demo",
   },
   {
-    value: "EUR",
-    label: "€",
+    value: "monthly",
+    label: "Aylık",
   },
   {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
+    value: "yearly",
+    label: "Yıllık",
+  }
 ];
 interface RegistrationProps {
   setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
@@ -56,6 +54,12 @@ export default function registration1({
     membershipType: "",
   });
 
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  }
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -67,26 +71,19 @@ export default function registration1({
       email: event.currentTarget.email.value,
       shopname: event.currentTarget.shopname.value,
       shopurl: event.currentTarget.shopUrl.value,
-      membershipType: "free",
+      membershipType: event.currentTarget.membershipType,
     });
-    debugger;
 
-    fetch("http://localhost:8000/api/v1/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reg1Data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.success) {
-          console.log("success");
-        } else {
-          console.log(reg1Data);
-        }
-      });
+    axios.post('http://localhost:8000/api/v1/register/user', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(reg1Data)
+    }).then((response) => {
+      console.log(response);
+      router.push('/login');
+    }).catch((error) => {
+      console.log(error);
+    });
 
     setRegistrationPage(2);
   };
@@ -217,7 +214,7 @@ export default function registration1({
               select
               fullWidth
               label="Üyelik Türü"
-              defaultValue="EUR"
+              defaultValue="free"
             >
               {currencies.map((option) => (
                 <MenuItem key={option.value} value={option.value}>

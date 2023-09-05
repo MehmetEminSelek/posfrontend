@@ -7,25 +7,16 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import styles from "./registration.module.css";
 import { Divider, Typography } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-];
+
+const headers = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+}
+
 
 interface RegistrationProps {
   setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
@@ -38,18 +29,38 @@ export default function registration3({
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const [reg3Data, setReg3Data ] = useState({
+    name: "",
+    surname: "",
+    title: "",
+    phoneNumber: "",
+    phoneNumber2: "",
+    email: "",
+    address: "",
+    postalCode: "",
+
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+
+    axios.post('http://localhost:8000/api/v1/register/user', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(reg3Data)
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
     });
+
+    setRegistrationPage(4);
   };
 
   return (
     <main className={styles.main}>
-      <Container component="main" maxWidth="xs">
+      <Grid direction={"row"} component="main" onSubmit={handleSubmit} maxWidth="xs">
         <h3 className={styles.text}>Haydi Başlayalım</h3>
         <p className={styles.text}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -80,6 +91,13 @@ export default function registration3({
                 fullWidth
                 id="name"
                 label="Adınız"
+                value={reg3Data.name}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    name: event.currentTarget.value,
+                  });
+                }}
                 name="name"
                 size="small"
               />
@@ -90,6 +108,13 @@ export default function registration3({
                 fullWidth
                 id="surname"
                 label="Soyadınız"
+                value={reg3Data.surname}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    surname: event.currentTarget.value,
+                  });
+                }}
                 name="surname"
                 size="small"
               />
@@ -100,6 +125,13 @@ export default function registration3({
                 fullWidth
                 id="title"
                 label="Ünvanınız"
+                value={reg3Data.title}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    title: event.currentTarget.value,
+                  });
+                }}
                 name="title"
                 size="small"
               />
@@ -120,6 +152,13 @@ export default function registration3({
                 fullWidth
                 id="homePhone"
                 label="Sabit Telefon"
+                value={reg3Data.phoneNumber}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    phoneNumber: event.currentTarget.value,
+                  });
+                }}
                 name="homePhone"
                 size="small"
               />
@@ -130,6 +169,13 @@ export default function registration3({
                 fullWidth
                 id="phoneNumber"
                 label="Cep Telefonu"
+                value={reg3Data.phoneNumber2}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    phoneNumber2: event.currentTarget.value,
+                  });
+                }}
                 name="phoneNumber"
                 size="small"
               />
@@ -140,6 +186,13 @@ export default function registration3({
                 fullWidth
                 id="email"
                 label="E-posta Adresiniz"
+                value={reg3Data.email}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    email: event.currentTarget.value,
+                  });
+                }}
                 name="email"
                 size="small"
               />
@@ -150,6 +203,13 @@ export default function registration3({
                 fullWidth
                 id="address"
                 label="Adres Bilgileri"
+                value={reg3Data.address}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    address: event.currentTarget.value,
+                  });
+                }}
                 name="address"
                 size="small"
               />
@@ -160,6 +220,13 @@ export default function registration3({
                 fullWidth
                 id="postalCode"
                 label="Posta Kodu"
+                value={reg3Data.postalCode}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setReg3Data({
+                    ...reg3Data,
+                    postalCode: event.currentTarget.value,
+                  });
+                }}
                 name="postalCode"
                 size="small"
               />
@@ -172,7 +239,7 @@ export default function registration3({
                   component="div"
                   color={"black"}
                 >
-                  İmza Yetkilisi Bilgileri
+                  İletişim Yetkilisi Bilgileri
                 </Typography>
                 <TextField
                   required
@@ -268,7 +335,6 @@ export default function registration3({
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => setRegistrationPage(4)}
           >
             Devam Et
           </Button>
@@ -280,7 +346,7 @@ export default function registration3({
             </Grid>
           </Grid>
         </Grid>
-      </Container>
+      </Grid>
     </main>
   );
 }

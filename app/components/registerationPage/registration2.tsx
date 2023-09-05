@@ -52,13 +52,48 @@ export default function registration2({
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const [reg2Data, setReg2Data] = useState({
+    username: "",
+    password: "",
+    email: "",
+    shopname: "",
+    shopurl: "",
+    membershipType: "",
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+
+    setReg2Data({
+      username: event.currentTarget.username.value,
+      password: event.currentTarget.password.value,
+      email: event.currentTarget.email.value,
+      shopname: event.currentTarget.shopname.value,
+      shopurl: event.currentTarget.shopUrl.value,
+      membershipType: event.currentTarget.membershipType,
     });
+    debugger;
+
+    fetch("http://localhost:8000/api/v1/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reg2Data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          console.log("success");
+        } else {
+          console.log(reg2Data);
+        }
+      });
+
+    setRegistrationPage(2);
   };
 
   return (
