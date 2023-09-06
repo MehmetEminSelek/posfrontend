@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 
 export default function Header() {
   return (
-    <div className='fixed left-0 top-0 w-full ease-in duration-300 bg-slate-600'>
+    <div className='sticky top-0 w-full ease-in duration-300 bg-slate-600'>
       <div className='flex justify-between items-center xl:justify-center p-4 text-white'>
         <div className='border px-5 py-2'>
           <Link href="/">
