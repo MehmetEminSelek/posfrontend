@@ -1,12 +1,19 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Profile from './components/mainPage/profile'
-import Topbanner from './components/mainPage/topbanner'
+import VideoBanner from "./components/videobanner/videobanner";
+import Bottombanner from "./components/bottombanner/bottombanner";
+import Comments from "./components/comments/comments";
+import TopBanner from "./components/topbanner/topbanner";
 
-export default function Page() {
+import React from 'react'
 
+const page = () => {
   return (
-    <main className={styles.main}>
-    </main>
+    <div>
+      <TopBanner/>
+      <VideoBanner/>
+      <Bottombanner/>
+      <Comments/>
+    </div>
   )
 }
+
+export default page

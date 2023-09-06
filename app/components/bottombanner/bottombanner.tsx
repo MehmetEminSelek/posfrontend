@@ -1,4 +1,4 @@
-import styles from "./css/bottombanner.module.css";
+import styles from "./bottombanner.module.css";
 import Stack from "@mui/joy/Stack";
 import { Grid } from "@mui/material";
 import MapIcon from "@mui/icons-material/Map";

@@ -1,0 +1,35 @@
+.topbanner {
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 27px;
+  color: rgb(74, 81, 92);
+}
+
+.subtitle {
+  font-size: 18px;
+  color: rgb(74, 81, 92);
+}
+
+.desc {
+  color: rgb(74, 81, 92);
+}
+
+.box {
+  display: flex;
+  width: 300px;
+  height: 450px;
+  flex-direction: column;
+}

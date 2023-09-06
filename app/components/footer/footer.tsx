@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import styles from "./css/footer.module.css";
+import styles from "./footer.module.css";
 import { Grid } from "@mui/joy";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Divider } from "@mui/material";

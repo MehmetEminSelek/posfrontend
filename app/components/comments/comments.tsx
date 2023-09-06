@@ -1,4 +1,4 @@
-import styles from "./css/comments.module.css";
+import styles from "./comments.module.css";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { Avatar, Grid } from "@mui/material";

@@ -1,0 +1,53 @@
+.main {
+  background-color: rgb(242, 242, 242);
+  display: flex;
+  align-items: center;
+  height: 500px;
+  padding: 30px;
+}
+
+.textBox{
+  height: 100%;
+  width: 60%;
+  padding-right: 250px;
+  position: relative;
+}
+
+.title{
+  color: rgb(74, 82, 93);
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle{
+  color: rgb(74, 82, 93);
+  font-size: 23px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.text{
+  color: rgb(100, 100, 100);
+  font-size: 15px;
+}
+
+.button{
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  width: 300px;
+  color: white;
+  background-color: rgb(74, 82, 93);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.videoBox{
+  height: 100%;
+  width: 40%;
+}
