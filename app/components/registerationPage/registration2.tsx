@@ -53,12 +53,17 @@ export default function registration2({
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const [reg2Data, setReg2Data] = useState({
-    username: "",
-    password: "",
-    email: "",
-    shopname: "",
-    shopurl: "",
-    membershipType: "",
+    companyTitle: "",
+    companyType: "",
+    companyName: "",
+    brandName: "",
+    mersisNo: "",
+    ticaretOdası: "",
+    kepAddress: "",
+    taxOffice: "",
+    taxNumber: "",
+    address: "",
+    addressDetail: "",
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,12 +72,17 @@ export default function registration2({
     const data = new FormData(event.currentTarget);
 
     setReg2Data({
-      username: event.currentTarget.username.value,
-      password: event.currentTarget.password.value,
-      email: event.currentTarget.email.value,
-      shopname: event.currentTarget.shopname.value,
-      shopurl: event.currentTarget.shopUrl.value,
-      membershipType: event.currentTarget.membershipType,
+      companyTitle: event.currentTarget.companyTitle.value,
+      companyType: event.currentTarget.companyType.value,
+      companyName: event.currentTarget.companyName.value,
+      brandName: event.currentTarget.brandName.value,
+      mersisNo: event.currentTarget.mersisNo.value,
+      ticaretOdası: event.currentTarget.ticaretOdası.value,
+      kepAddress: event.currentTarget.kepAddress.value,
+      taxOffice: event.currentTarget.taxOffice.value,
+      taxNumber: event.currentTarget.taxNumber.value,
+      address: event.currentTarget.address.value,
+      addressDetail: event.currentTarget.addressDetail.value,
     });
     debugger;
 
@@ -225,7 +235,6 @@ export default function registration2({
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => setRegistrationPage(3)}
           >
             Devam Et
           </Button>

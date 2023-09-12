@@ -32,7 +32,7 @@ const currencies = [
   {
     value: "yearly",
     label: "Yıllık",
-  }
+  },
 ];
 interface RegistrationProps {
   setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
@@ -55,10 +55,10 @@ export default function registration1({
   });
 
   const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-  }
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -74,18 +74,21 @@ export default function registration1({
       membershipType: event.currentTarget.membershipType,
     });
 
-    axios.post('http://localhost:8000/api/v1/register/user', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(reg1Data)
-    }).then((response) => {
-      console.log(response);
-      router.push('/login');
-    }).catch((error) => {
-      console.log(error);
-    });
-
-    setRegistrationPage(2);
+    axios
+      .post("http://localhost:8000/api/v1/register/user", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(reg1Data),
+      })
+      .then((response) => {
+        console.log(response);
+        router.push("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    debugger;
+    setRegistrationPage(1);
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -207,7 +210,7 @@ export default function registration1({
               />
             </Grid>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               id="membershipType"
               name="membershipType"
@@ -223,14 +226,28 @@ export default function registration1({
               ))}
             </TextField>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Devam Et
-          </Button>
+          <Grid item xs={12} md={6}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Devam Et
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outlined"
+              color="error"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => {
+                router.push("/");
+              }}
+            >
+              Geri Dön
+            </Button>
+          </Grid>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">

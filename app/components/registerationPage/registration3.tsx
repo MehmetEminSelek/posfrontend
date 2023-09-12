@@ -10,13 +10,11 @@ import { Divider, Typography } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
-
 const headers = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-}
-
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+};
 
 interface RegistrationProps {
   setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
@@ -29,7 +27,7 @@ export default function registration3({
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const [reg3Data, setReg3Data ] = useState({
+  const [reg3Data, setReg3Data] = useState({
     name: "",
     surname: "",
     title: "",
@@ -38,29 +36,36 @@ export default function registration3({
     email: "",
     address: "",
     postalCode: "",
-
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    axios.post('http://localhost:8000/api/v1/register/user', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(reg3Data)
-    }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
+    axios
+      .post("http://localhost:8000/api/v1/register/user", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(reg3Data),
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    setRegistrationPage(4);
+    setRegistrationPage(3);
   };
 
   return (
     <main className={styles.main}>
-      <Grid direction={"row"} component="main" onSubmit={handleSubmit} maxWidth="xs">
+      <Grid
+        direction={"row"}
+        component="main"
+        onSubmit={handleSubmit}
+        maxWidth="xs"
+      >
         <h3 className={styles.text}>Haydi Başlayalım</h3>
         <p className={styles.text}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
