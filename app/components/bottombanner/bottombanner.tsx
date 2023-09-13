@@ -13,13 +13,11 @@ import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 
 export default function bottombanner() {
   return (
-    <main className={styles.main}>
+    <main className="container mx-auto text-center sm:text-left p-4">
       <Swiper
         spaceBetween={10}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
           640: {
             slidesPerView: 1,

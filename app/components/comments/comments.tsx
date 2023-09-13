@@ -14,21 +14,19 @@ import CardContent from "@mui/material/CardContent";
 
 export default function comments() {
   return (
-    <main className={styles.main}>
-      <Grid container spacing={2} justifyContent="space-evenly">
+    <main className="container mx-auto text-center sm:text-left p-4 bg-gray-100  p-4 rounded shadow-lg">
+      <Grid className="container mx-auto text-center sm:text-left">
         <Swiper
           spaceBetween={10}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           breakpoints={{
             640: {
               slidesPerView: 1,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 10,
             },
             1024: {
@@ -39,13 +37,7 @@ export default function comments() {
         >
           {[...Array(3)].map((_, index) => (
             <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 650,
-                  minWidth: 400,
-                  backgroundColor: "whitesmoke",
-                }}
-              >
+              <Card className="p-4 rounded shadow-lg text-center sm:text-left">
                 <Typography
                   marginLeft={"15px"}
                   margin={"15px"}

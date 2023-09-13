@@ -13,15 +13,13 @@ const TopBanner = () => {
         spaceBetween={10}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
           640: {
             slidesPerView: 1,
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 10,
           },
           1024: {
@@ -32,7 +30,7 @@ const TopBanner = () => {
       >
         {["Muhasebe", "Rezervasyon", "Entegrasyon"].map((title, index) => (
           <SwiperSlide key={index}>
-            <div className=" p-4 rounded shadow-lg text-center sm:text-left">
+            <div className="flex flex-col items-center p-4 rounded text-center sm:text-left">
               <h1 className="text-2xl font-bold mb-2">{title}</h1>
               <div className="w-72 h-72 sm:w-60 sm:h-60 md:w-72 md:h-72 relative flex items-center justify-center mb-2">
                 <Image
@@ -41,9 +39,10 @@ const TopBanner = () => {
                   quality={100}
                   layout="fill"
                   objectFit="cover"
-                  className="rounded mx-auto ml-6"
+                  className="rounded"
                 />
               </div>
+
               <h2 className="text-xl mb-2">Daha Kolay {title} Deneyimi</h2>
               <div className="text-gray-700">
                 Nesnelerin interneti (IoT), iş açısından kritik bir unsur haline
