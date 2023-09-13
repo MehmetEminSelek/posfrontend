@@ -15,7 +15,7 @@ export default function footer() {
           <InstagramIcon />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 mx-auto py-2 bg-gray-200 text-center text-decoration-line: underline">
+      <div className="grid grid-flow-col md:auto-cols-min mx-auto py-2 bg-gray-200 text-center text-decoration-line: underline">
         <div>
           <h3 className="font-semibold">Bilgi Edinin</h3>
           <p>Tüm Ürünler</p>
