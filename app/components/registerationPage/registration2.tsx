@@ -1,57 +1,17 @@
+"use client"
+
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styles from "./registration.module.css";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
-
-import { ReactElement } from "react";
 
 import { useState } from "react";
 
-const theme = createTheme();
-
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-];
-
-interface RegistrationProps {
-  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export default function registration2({
-  setRegistrationPage,
-}: RegistrationProps) {
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
+export default function Registration2() {
   const [reg2Data, setReg2Data] = useState({
     companyTitle: "",
     companyType: "",
@@ -68,8 +28,6 @@ export default function registration2({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
 
     setReg2Data({
       companyTitle: event.currentTarget.companyTitle.value,
@@ -101,9 +59,7 @@ export default function registration2({
         } else {
           console.log(reg2Data);
         }
-      });
-
-    setRegistrationPage(2);
+      })
   };
 
   return (
