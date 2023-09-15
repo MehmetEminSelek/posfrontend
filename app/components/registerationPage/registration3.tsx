@@ -1,12 +1,12 @@
+"use client"
+
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import styles from "./registration.module.css";
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
@@ -16,17 +16,7 @@ const headers = {
   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 };
 
-interface RegistrationProps {
-  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export default function registration3({
-  setRegistrationPage,
-}: RegistrationProps) {
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
+export default function Registration3() {
   const [reg3Data, setReg3Data] = useState({
     name: "",
     surname: "",
@@ -40,8 +30,6 @@ export default function registration3({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
     axios
       .post("http://localhost:8000/api/v1/register/user", {
         method: "POST",
@@ -53,9 +41,7 @@ export default function registration3({
       })
       .catch((error) => {
         console.log(error);
-      });
-
-    setRegistrationPage(3);
+      })
   };
 
   return (

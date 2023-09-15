@@ -3,13 +3,11 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-
+import { FC } from 'react'
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styles from "./registration.module.css";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
@@ -17,8 +15,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import axios from "axios";
-
-const theme = createTheme();
 
 const currencies = [
   {
@@ -34,14 +30,15 @@ const currencies = [
     label: "Yıllık",
   },
 ];
-interface RegistrationProps {
-  setRegistrationPage: React.Dispatch<React.SetStateAction<number>>;
+
+interface pageProps {
+  params: { id: string }
 }
 
-export default function registration1({
-  setRegistrationPage,
-}: RegistrationProps) {
+const page: FC<pageProps> = ({ params }) => {
   const router = useRouter();
+  const pageNumber = +params.id
+  const nextPageNumber = pageNumber + 1
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -63,8 +60,6 @@ export default function registration1({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
-
     setReg1Data({
       username: event.currentTarget.username.value,
       password: event.currentTarget.password.value,
@@ -82,16 +77,12 @@ export default function registration1({
       })
       .then((response) => {
         console.log(response);
-        router.push("/login");
+        router.push("/registration/" + nextPageNumber)
       })
       .catch((error) => {
         console.log(error);
-      });
-    debugger;
-    setRegistrationPage(1);
+      })
   };
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
     <main className={styles.main}>
@@ -260,3 +251,5 @@ export default function registration1({
     </main>
   );
 }
+
+export default page
