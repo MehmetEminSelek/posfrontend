@@ -3,6 +3,7 @@ import Image from "next/image";
 import stock from "../../../public/images/stock.png";
 
 export default function Hero() {
+  
   return (
     <div className={styles.main}>
       <div className={styles.hero}>
@@ -14,11 +15,12 @@ export default function Hero() {
           />
           <div className={styles.boxText}>Ücretsiz Muhasebe</div>
         </div>
-        <div className={styles.box}>
+        <div className={styles.box} >
           <Image
             className={styles.image}
             src={stock}
             alt="Ücretsiz Entegrasyon"
+            
           />
           <div className={styles.boxText}>Ücretsiz Rezervasyon</div>
         </div>
