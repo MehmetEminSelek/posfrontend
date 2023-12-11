@@ -6,7 +6,17 @@ import stockRec from "../../../public/images/stockRec.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+const handleImageClick = () => {
+  // Redirecting to the desired URL
+  // window.location.href = 'http://localhost:3001';
+  window.open("http://localhost:3001","_blank")
+  
+};
+
+
 const TopBanner = () => {
+
+
   return (
     <div className="container mx-auto text-center sm:text-left p-4">
       <Swiper
@@ -40,6 +50,7 @@ const TopBanner = () => {
                   layout="fill"
                   objectFit="cover"
                   className="rounded"
+                  onClick={handleImageClick}
                 />
               </div>
 
